@@ -1,11 +1,20 @@
+from datetime import datetime
 from flask import Blueprint, jsonify, request
-from api_testing_tool import db
+from api_testing_tool import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
-from config import SECRET_KEY
-from flask_jwt_extended import jwt_required, create_access_token
+from flask_jwt_extended import create_access_token
 
 
 auth_blueprint = Blueprint('auth', __name__)
+
+@jwt.user_lookup_loader
+def _user_lookup_callback(_jwt_header, jwt_data):
+    identity = jwt_data["sub"]
+    print(identity)
+    user = db.users.find_one({"email":identity})
+    if user is None:
+        return None
+    return user
 
 
 # create account
@@ -25,7 +34,8 @@ def signup():
     if not user:
         user = db.users.insert_one({
             **data,
-            "password": generate_password_hash(password)
+            "password": generate_password_hash(password),
+            "joinedAt": datetime.now()
         })
         return jsonify({"message":"Account Created Successfully!"}), 201
 
