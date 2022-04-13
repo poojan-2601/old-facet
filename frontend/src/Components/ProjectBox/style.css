@@ -1,0 +1,6 @@
+.projectBox:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+    transition: .5s ease-in-out;
+    border-color: rgb(122, 122, 253);
+}

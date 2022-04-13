@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import Header from './Components/Header';
+import HomeContainer from './Containers/HomeContainer';
 import LoginContainer from './Containers/LoginContainer';
 import SignupContainer from './Containers/SignUpContainer';
 
@@ -9,7 +10,7 @@ const App = () => {
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<></>} />
+        <Route path="/" element={<HomeContainer />} />
         <Route path="/login" element={<LoginContainer />} />
         <Route path="/register" element={<SignupContainer />} />
       </Routes>

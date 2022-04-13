@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap"
-import {Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "../../axios";
 
 
@@ -30,11 +30,11 @@ const Login = () => {
     return(
         <div className="col-md-4 m-auto border p-4  ">
         <Form onSubmit ={onHandleSubmit}>
-            <FormGroup className="mb-3" controlId="formBasicEmail">
+            <FormGroup className="mb-3">
                 <FormLabel>Email</FormLabel>
                 <Form.Control type="email" placeholder="Enter email" name = "email" id="email" onChange={onchange} value={formDetails.email}/>
             </FormGroup>
-            <FormGroup className="mb-3" controlId="formBasicPassword">
+            <FormGroup className="mb-3">
                 <FormLabel>Password</FormLabel>
                 <Form.Control type="password" name="password" id="password" placeholder="Password" onChange={onchange} value={formDetails.password}/>
             </FormGroup>
