@@ -29,6 +29,7 @@ const Login = () => {
 
     return(
         <div className="col-md-4 m-auto border p-4  ">
+            <h1 className="text-center">Login</h1>
         <Form onSubmit ={onHandleSubmit}>
             <FormGroup className="mb-3">
                 <FormLabel>Email</FormLabel>
