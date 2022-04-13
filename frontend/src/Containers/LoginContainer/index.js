@@ -1,8 +1,11 @@
 import React from 'react'
+import Login from '../../Components/Login';
 
 const LoginContainer = () => {
     return (
-        <div>LoginContainer</div>
+        <div className='d-flex justify-content-center align-items-center' style={{"minHeight": "70vh"}}>
+            <Login/>
+        </div>
     )
 }
 
