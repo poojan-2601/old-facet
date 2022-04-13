@@ -13,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<PrivateRoutes />}>
           <Route path="/" element={<HomeContainer />} />
+          <Route path="/project/:projSlug" element={<></>} />
         </Route>
         <Route path="/login" element={<LoginContainer />} />
         <Route path="/register" element={<SignupContainer />} />
