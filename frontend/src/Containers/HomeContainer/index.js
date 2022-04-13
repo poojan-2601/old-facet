@@ -7,6 +7,7 @@ import ProjectBox from '../../Components/HomePage/ProjectBox';
 const HomeContainer = () => {
     const [show, setShow] = useState(false);
     const [projects, setProjects] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const handleClose = () => {
         setShow(false);
@@ -16,6 +17,7 @@ const HomeContainer = () => {
         axios.get(`/api/projects`)
             .then((res) => {
                 setProjects(res.data.projects);
+                setLoading(false);
             })
             .catch(err => {
                 console.log(err)
@@ -31,14 +33,18 @@ const HomeContainer = () => {
             </div>
             <hr/>
             
-            <Row>
-                {projects.map(e => {
-                    return <Col key={e._id} md={4}>
-                            <ProjectBox data={e} />
-                        </Col>
-                })}
-                
-            </Row>
+            {loading?(
+                <>Loading...</>
+            ):(
+                <Row>
+                    {projects.map(e => {
+                        return <Col key={e._id} md={4}>
+                                <ProjectBox data={e} />
+                            </Col>
+                    })}
+                    
+                </Row>
+            )}
         </Container>
     )
 }
