@@ -1,0 +1,11 @@
+.navlink{
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+}
+.navlink.active{
+    color: rgb(111, 111, 255);
+    border-radius: 10px;
+    background: #ededed;
+}

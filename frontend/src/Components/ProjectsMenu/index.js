@@ -1,20 +1,35 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, NavLink, useNavigate} from 'react-router-dom';
+import './style.css'
 
 const ProjectsMenu = ({data}) => {
     let navigate = useNavigate();
+    const links = [
+        "testsuites",
+        "testcases",
+        "headers",
+        "endpoints",
+        "testdata",
+        "payloads"
+    ]
     return(
         <>
-            <Navbar bg = "light" variant="light">
+            <Navbar bg="light" variant="light" className="border">
                 <Container>
                     <Nav>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/testsuite`)}}>Testsuite</Nav.Link>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/headers`)}}>Headers</Nav.Link>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/endpoints`)}}>Endpoints</Nav.Link>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/testcases`)}}>Testcases</Nav.Link>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/testdata`)}}>Testdata</Nav.Link>
-                    <Nav.Link onClick={() => {navigate(`/project/${data.projSlug}/payload`)}}>Payload</Nav.Link>
+                        {links.map(e => {
+                            return <Nav.Link><NavLink
+                                        to={`/project/${data.projSlug}/${e}`}
+                                        className={({ isActive }) => {
+                                            return isActive?("navlink active"):("navlink")
+                                        }}
+                                    >
+                                        {e}
+                                    </NavLink>
+                                    </Nav.Link>
+                        })}
+                        
                     </Nav>
                 </Container>
             </Navbar>

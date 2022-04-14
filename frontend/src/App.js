@@ -6,10 +6,11 @@ import LoginContainer from './Containers/LoginContainer';
 import ProjectsContainer from './Containers/ProjectContainer';
 import SignupContainer from './Containers/SignUpContainer';
 import PrivateRoutes from './PrivateRoutes';
+import './App.css'
 
 const App = () => {
   return (
-    <div>
+    <div className='App bg-light'>
       <Header />
       <Routes>
         <Route path='/' element={<PrivateRoutes />}>
