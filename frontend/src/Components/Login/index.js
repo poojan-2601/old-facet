@@ -20,7 +20,7 @@ const Login = () => {
             // res = res.json()
             localStorage.setItem('token',res.data.token)
             console.log(res);
-            navigate("/",{replace:true});
+            navigate("/dashboard",{replace:true});
         })
         .catch((err) =>{
             console.log(err);

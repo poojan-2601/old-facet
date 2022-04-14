@@ -3,18 +3,21 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import axios from '../../axios';
 import AddProject from '../../Components/HomePage/AddProject';
 import ProjectBox from '../../Components/HomePage/ProjectBox';
+import SearchBox from '../../Components/SearchBox';
 
 const HomeContainer = () => {
     const [show, setShow] = useState(false);
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const handleClose = () => {
         setShow(false);
     }
 
     useEffect(() => {
-        axios.get(`/api/projects`)
+        setLoading(true);
+        axios.get(`/api/projects?q=${searchQuery}`)
             .then((res) => {
                 setProjects(res.data.projects);
                 setLoading(false);
@@ -22,15 +25,19 @@ const HomeContainer = () => {
             .catch(err => {
                 console.log(err)
             })
-    }, [])
+    }, [searchQuery])
     
     return (
         <Container className='py-4'>
             <AddProject show={show} handleClose={handleClose} />
-            <div className='d-flex justify-content-between align-items-center'>
-                <h2>My Projects</h2>
-                <Button variant='success' onClick={() => setShow(true)}>Add New Project</Button>
-            </div>
+            <Row>
+                <Col>
+                    <SearchBox searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+                </Col>
+                <Col md={2}>
+                    <Button variant='success' onClick={() => setShow(true)}>Add New Project</Button>
+                </Col>
+            </Row>
             <hr/>
             
             {loading?(

@@ -12,7 +12,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path='/' element={<PrivateRoutes />}>
-          <Route path="/" element={<HomeContainer />} />
+          <Route path="/dashboard" element={<HomeContainer />} />
           <Route path="/project/:projSlug" element={<></>} />
         </Route>
         <Route path="/login" element={<LoginContainer />} />
