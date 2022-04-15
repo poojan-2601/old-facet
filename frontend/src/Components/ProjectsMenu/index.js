@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { Link, NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import './style.css'
 
 const ProjectsMenu = ({data}) => {
@@ -19,7 +19,8 @@ const ProjectsMenu = ({data}) => {
                 <Container>
                     <Nav>
                         {links.map(e => {
-                            return <Nav.Link><NavLink
+                            return <Nav.Link key={e}>
+                                    <NavLink
                                         to={`/project/${data.projSlug}/${e}`}
                                         className={({ isActive }) => {
                                             return isActive?("navlink active"):("navlink")
@@ -27,7 +28,7 @@ const ProjectsMenu = ({data}) => {
                                     >
                                         {e}
                                     </NavLink>
-                                    </Nav.Link>
+                                </Nav.Link>
                         })}
                         
                     </Nav>

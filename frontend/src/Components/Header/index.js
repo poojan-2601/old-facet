@@ -29,7 +29,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="facet-navbar-nav" />
                 <Navbar.Collapse id="facet-navbar-nav">
                     <Nav className='me-auto'>
-                        <Nav.Link onClick={() => navigate('/')}>Home</Nav.Link>
+                        <Nav.Link onClick={() => navigate('/dashboard')}>Home</Nav.Link>
                     </Nav>
                     <>
                         {localStorage.getItem('token')?(
