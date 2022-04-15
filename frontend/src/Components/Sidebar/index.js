@@ -14,7 +14,7 @@ const Sidebar = () => {
         setLoading(true);
         axios.get(`/api/${tab}`, {params:{"project":projSlug}})
             .then((details) =>{
-                setData(details.data.endpoints);
+                setData(details.data[tab]);
                 setLoading(false);
             })
             .catch((err) =>{

@@ -1,3 +1,8 @@
+.projectBox{
+    min-height: 100%;
+    width: 100%;
+}
+
 .projectBox:hover{
     transform: scale(1.02);
     cursor: pointer;
