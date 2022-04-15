@@ -1,0 +1,11 @@
+.sidebar-container{
+    min-height: calc(100vh - 150px);
+    border-right: 1px solid rgb(209, 209, 209);
+}
+
+.nav-pills .nav-link{
+    cursor: pointer;
+}
+.nav-pills .nav-link.active{
+    color: #fff !important;
+}

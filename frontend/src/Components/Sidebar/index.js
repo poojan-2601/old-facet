@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Tab, Nav, Col, Row, Container } from "react-bootstrap"
+import { Tab, Nav, Col, Row, Container, NavLink } from "react-bootstrap"
 import { useParams } from "react-router-dom";
 import axios from "../../axios";
+import SearchBox from '../SearchBox';
+import './style.css'
 
 const Sidebar = () => {
     const [data,setData] = useState([]);
@@ -10,7 +12,7 @@ const Sidebar = () => {
     
     useEffect(()=>{
         setLoading(true);
-        axios.get(`/api/${tab}`, {params:{"projName":projSlug}})
+        axios.get(`/api/${tab}`, {params:{"project":projSlug}})
             .then((details) =>{
                 setData(details.data.endpoints);
                 setLoading(false);
@@ -21,18 +23,21 @@ const Sidebar = () => {
     },[tab])
 
     return (
-        <Container>
+        <Container className="py-3">
             {loading?"Loading...":(                    
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                     <Row>
-                        <Col sm={3}>
-                            <Nav variant="pills" className="flex-column">
-                                {data.map((e) => {
-                                    return <Nav.Item key={e._id}>
-                                            <Nav.Link className="text-dark" eventKey={e.name}>{e.name}Hi</Nav.Link>
-                                        </Nav.Item>
-                                })}
-                            </Nav>
+                        <Col sm={3} className="sidebar-container">
+                            <div className="p-2">
+                                <SearchBox className="border-bottom mb-2" />
+                                <Nav variant="pills" className="flex-column my-2">
+                                    {data.map((e) => {
+                                        return <Nav.Item key={e._id}>
+                                                <NavLink to="#" className="text-dark" eventKey={e.name}>{e.name}</NavLink>
+                                            </Nav.Item>
+                                    })}
+                                </Nav>
+                            </div>
                         </Col>
                         <Col sm={9}>
                             <Tab.Content>
