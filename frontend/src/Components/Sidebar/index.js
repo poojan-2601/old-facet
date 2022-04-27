@@ -3,6 +3,7 @@ import { Tab, Nav, Col, Row, Container, NavLink } from "react-bootstrap"
 import { useParams } from "react-router-dom";
 import axios from "../../axios";
 import SearchBox from '../SearchBox';
+import TestsuiteComponent from "../TestsuiteComponent";
 import './style.css'
 
 const Sidebar = () => {
@@ -43,7 +44,9 @@ const Sidebar = () => {
                             <Tab.Content>
                                 {data.map((e) => {
                                     return <Tab.Pane key={e.name} eventKey={e.name}>
-                                            {JSON.stringify(e)}
+                                            {tab === "testsuites" ? (
+                                                <TestsuiteComponent  instance = {e}/>
+                                            ) : ("")}
                                         </Tab.Pane>
                                 })}
                             </Tab.Content>
