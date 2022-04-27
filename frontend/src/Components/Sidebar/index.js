@@ -43,7 +43,7 @@ const Sidebar = () => {
                             <Tab.Content>
                                 {data.map((e) => {
                                     return <Tab.Pane key={e.name} eventKey={e.name}>
-                                            {e.name}
+                                            {JSON.stringify(e)}
                                         </Tab.Pane>
                                 })}
                             </Tab.Content>

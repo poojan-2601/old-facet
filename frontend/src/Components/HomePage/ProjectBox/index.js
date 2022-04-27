@@ -7,7 +7,7 @@ const ProjectBox = ({data}) => {
   let navigate = useNavigate();
 
   const openProject = (e) => {
-    navigate(`/project/${data.name}`)
+    navigate(`/project/${data.name}/testsuites`)
   }
   return (
     <div>
