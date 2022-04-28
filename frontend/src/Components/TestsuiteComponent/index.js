@@ -32,30 +32,32 @@ const TestsuiteComponent = (props) => {
                 {instance.testcases && instance.testcases.map((e) => {
                     let resultInstance = result.filter(res => res.name === e.name)[0] || {};
                     return <Accordion>
-                        <Accordion.Item className={`my-2 ${resultInstance.status === 'passed' ? (
-                            'border-success text-success'
-                        ) : (
-                            resultInstance.status === 'failed' ? (
-                                'border-danger text-danger'
-                            ) : ''
-                        )}`
-                        } eventKey={e.name}>
-                            <Accordion.Header >{e.name}</Accordion.Header>
-                            <Accordion.Body>
-                                <div>
-                                    {resultInstance.status ?
-                                        (resultInstance.status === 'passed' ?
-                                            (<>status : {resultInstance.status}</>)
-                                            : (
-                                                <>status : {resultInstance.status}
-                                                    <br /> Message : {resultInstance.message || resultInstance.Message}</>))
-                                        : (<>status : Yet to be executed
-                                        </>)
-                                    }
-                                </div>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
+                                <Accordion.Item className={`my-2 ${resultInstance.status === 'passed' ? (
+                                    'border-success text-success'
+                                ) : (
+                                    resultInstance.status === 'failed' ? (
+                                        'border-danger text-danger'
+                                    ) : ''
+                                )}`
+                                } eventKey={e.name}>
+                                    <Accordion.Header variant="danger" className="text-danger" style={{color: "red !important"}} >{e.name}</Accordion.Header>
+                                    <Accordion.Body>
+                                        <div>
+                                            {resultInstance.status ?
+                                                (resultInstance.status === 'passed' ?
+                                                    (<>status : {resultInstance.status}</>)
+                                                    : (
+                                                        <pre>
+                                                            {JSON.stringify(resultInstance.response, null, 2)}
+                                                        </pre>
+                                                        ))
+                                                : (<>status : Yet to be executed
+                                                </>)
+                                            }
+                                        </div>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
 
                 })
 
