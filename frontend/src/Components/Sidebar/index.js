@@ -46,7 +46,11 @@ const Sidebar = () => {
                                     return <Tab.Pane key={e.name} eventKey={e.name}>
                                             {tab === "testsuites" ? (
                                                 <TestsuiteComponent  instance={e} />
-                                            ) : (JSON.stringify(e))}
+                                            ) : (
+                                                <pre>
+                                                    {JSON.stringify(e, null, 2)}
+                                                </pre>
+                                            )}
                                         </Tab.Pane>
                                 })}
                             </Tab.Content>
