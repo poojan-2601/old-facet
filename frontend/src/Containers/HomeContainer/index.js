@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Spinner } from 'react-bootstrap';
 import axios from '../../axios';
 import AddProject from '../../Components/HomePage/AddProject';
 import ProjectBox from '../../Components/HomePage/ProjectBox';
@@ -41,7 +41,7 @@ const HomeContainer = () => {
             <hr/>
             
             {loading?(
-                <>Loading...</>
+                <Spinner animation='border' />
             ):(
                 <Row>
                     {projects.map(e => {

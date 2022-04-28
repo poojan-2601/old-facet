@@ -10,7 +10,6 @@ const ProjectsMenu = ({data}) => {
         "testcases",
         "headers",
         "endpoints",
-        "testdata",
         "payloads"
     ]
     return(
