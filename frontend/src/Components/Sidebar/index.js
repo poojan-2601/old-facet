@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tab, Nav, Col, Row, Container, NavLink, Spinner, Button} from "react-bootstrap"
+import { MdAdd } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import axios from "../../axios";
 import AdddetailPopup from "../AddDetailPopup";
@@ -28,13 +29,22 @@ const Sidebar = () => {
             })
     }, [tab])
     return (
-        <Container className="py-3">
+        <Container fluid className="py-3">
             <AdddetailPopup show = {show} handleClose = {handleClose}/>
             {loading ? <Spinner animation="border" /> : (
                 <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                     <Row>
                         <Col sm={3} className="sidebar-container">
                             <div className="p-2">
+                                <div className="d-flex justify-content-between align-items-center border-bottom mb-3">
+                                    <h4 style={{textTransform:'capitalize'}}>{tab}</h4>
+                                    <Button variant="success" size="sm" onClick={()=>setShow(true)}>
+                                        <MdAdd 
+                                            size={16}
+                                        /> 
+                                        Add New
+                                    </Button>
+                                </div>
                                 <SearchBox className="border-bottom mb-2" />
                                 <Nav variant="pills" className="flex-column my-2">
                                     {data.length > 0 && data.map((e) => {
@@ -43,7 +53,6 @@ const Sidebar = () => {
                                         </Nav.Item>
                                     })}
                                 </Nav>
-                                <Button variant="success" onClick={()=>setShow(true)}>add {tab}</Button>
                             </div>
                         </Col>
                         <Col sm={9}>

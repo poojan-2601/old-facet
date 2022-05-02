@@ -3,21 +3,19 @@ import { Form,Button } from "react-bootstrap";
 import axios from "../../../axios";
 
 const AddHeader = (props) => {
-    const { projSlug } = props
-    const { tab } = props
-    const { handleClose } = props
-    const [formData,setFormData] = useState({"project" : projSlug,"name" : "", "header" : ""})
+    const { projSlug, tab, handleClose } = props;
+    const [formData,setFormData] = useState({"project" : projSlug,"name" : "", "header" : ""});
+
     const onSubmit = (e) => {
         handleClose();
         e.preventDefault();
-        console.log('------------',formData);
-        axios.post('/api/create-headers', formData)
+        axios.post('/api/headers/new', {...formData, "header": JSON.parse(formData.header)})
         .then(res => {
             alert(res.data.success);
             handleClose();
         })
         .catch(err => {
-            alert(err.response.data.errors);
+            console.log(err.response);
         })
     }
     const onchange = (e) => {
@@ -32,11 +30,11 @@ const AddHeader = (props) => {
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Header</Form.Label>
-                    <Form.Control type = "object" as="textarea" rows = {5} name="header" id="header" value = {formData.header} onChange = {onchange}/>
+                    <Form.Control type="object" as="textarea" rows={5} name="header" id="header" value={JSON.parse(JSON.stringify(formData.header, null, 4))} onChange={onchange}/>
                 </Form.Group>
-                <div className="border-top">
-                    <Button variant="secondary" onClick={handleClose} className="m-3"> Close</Button>
-                    <Button variant="primary" type="submit" className="m-3">Save changes</Button>
+                <div className="d-flex justify-content-end">
+                    <Button variant="secondary" onClick={handleClose} className="me-2">Close</Button>
+                    <Button variant="primary" type="submit">Save Changes</Button>
                 </div>
             </Form>
         </>

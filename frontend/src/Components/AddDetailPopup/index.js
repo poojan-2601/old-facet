@@ -8,8 +8,7 @@ import AddPayload from "../AddDetails/AddPayload";
 import AddEndpoint from "../AddDetails/AddEndpoint";
 
 const AdddetailPopup = (props) => {
-    const { show } = props
-    const { handleClose } = props
+    const { show, handleClose } = props;
     let { projSlug, tab } = useParams();
 
     const SwitchCase = () => {
@@ -30,15 +29,12 @@ const AdddetailPopup = (props) => {
     return (
         <>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Dialog>
-                    <Modal.Header closeButton>
-                        <Modal.Title>add {tab}</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-                        {SwitchCase()}
-                    </Modal.Body>
-                </Modal.Dialog>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add {tab}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {SwitchCase()}
+                </Modal.Body>
             </Modal>
         </>
     )

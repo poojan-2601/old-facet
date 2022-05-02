@@ -2,9 +2,8 @@ import React from "react";
 import { Form,Button } from "react-bootstrap";
 
 const AddTestcase = (props) => {
-    const { projSlug } = props
-    const { tab } = props
-    const { handleClose } = props
+    const { projSlug, tab, handleClose } = props;
+    
     const onSubmit = (e) => {
         handleClose();
         e.preventDefault();
@@ -22,9 +21,9 @@ const AddTestcase = (props) => {
                     <Form.Label>Testcase</Form.Label>
                     <Form.Control type="text" name="name" id="name" />
                 </Form.Group>
-                <div className="border-top">
-                    <Button variant="secondary" onClick={handleClose} className="m-3"> Close</Button>
-                    <Button variant="primary" type="submit" className="m-3">Save changes</Button>
+                <div className="d-flex justify-content-end">
+                    <Button variant="secondary" onClick={handleClose} className="me-2">Close</Button>
+                    <Button variant="primary" type="submit">Save Changes</Button>
                 </div>
             </Form>
         </>
