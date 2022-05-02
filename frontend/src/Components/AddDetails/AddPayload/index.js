@@ -1,7 +1,7 @@
 import React from "react";
 import { Form,Button } from "react-bootstrap";
 
-const AddTestcase = (props) => {
+const AddPayload = (props) => {
     const { projSlug } = props
     const { tab } = props
     const { handleClose } = props
@@ -19,7 +19,7 @@ const AddTestcase = (props) => {
                     <Form.Control type="text" name="name" id="name" />
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                    <Form.Label>Testcase</Form.Label>
+                    <Form.Label>Payload</Form.Label>
                     <Form.Control type="text" name="name" id="name" />
                 </Form.Group>
                 <div className="border-top">
@@ -31,4 +31,4 @@ const AddTestcase = (props) => {
     )
 }
 
-export default AddTestcase;
+export default AddPayload;

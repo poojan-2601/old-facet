@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Tab, Nav, Col, Row, Container, NavLink, Spinner, Button, Modal } from "react-bootstrap"
+import { Tab, Nav, Col, Row, Container, NavLink, Spinner, Button} from "react-bootstrap"
 import { useParams } from "react-router-dom";
 import axios from "../../axios";
 import AdddetailPopup from "../AddDetailPopup";
-import AddTestsuite from "../AddDetails/AddTestsuite";
 import SearchBox from '../SearchBox';
 import TestsuiteComponent from "../TestsuiteComponent";
 import './style.css'
@@ -13,6 +12,10 @@ const Sidebar = () => {
     const [loading, setLoading] = useState(true);
     const [show,setShow] = useState(false)
     let { projSlug, tab } = useParams();
+
+    const handleClose = () => {
+        setShow(false)
+    }
     useEffect(() => {
         setLoading(true);
         axios.get(`/api/${tab}`, { params: { "project": projSlug } })
@@ -24,13 +27,6 @@ const Sidebar = () => {
                 console.log('something', err);
             })
     }, [tab])
-
-    const addDetails = () => {
-       setShow(true)
-    }
-    const handleClose = () => {
-        setShow(false)
-    }
     return (
         <Container className="py-3">
             <AdddetailPopup show = {show} handleClose = {handleClose}/>
@@ -47,7 +43,7 @@ const Sidebar = () => {
                                         </Nav.Item>
                                     })}
                                 </Nav>
-                                <Button variant="success" onClick={addDetails}>add {tab}</Button>
+                                <Button variant="success" onClick={()=>setShow(true)}>add {tab}</Button>
                             </div>
                         </Col>
                         <Col sm={9}>
