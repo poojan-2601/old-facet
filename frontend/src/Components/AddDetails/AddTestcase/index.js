@@ -23,52 +23,49 @@ const AddTestcase = (props) => {
             "payloads": []
         }
     );
+
     const onSubmit = (e) => {
         e.preventDefault();
         axios.post('/api/testcases/new', formData)
-            .then(res => {
-                alert(res.data.success);
-            })
-            .catch(err => {
-                console.log(err.response.data);
-            })
+        .then(res => {
+            alert(res.data.success);
+        })
+        .catch(err => {
+            console.log(err.response.data);
+        })
         handleClose();
     }
-
-    const fetchData = async () => {
-        await axios.get('/api/headers', { params: { "project": projSlug }})
-            .then(res => {
-                const data = res.data.headers;
-                let headers = [];
-                data.forEach(ele => {
-                    headers.push({value: ele['_id'], label: ele['name']})
-                })
-                setOptions({...options, "headers":headers});
-            })
-
-            await axios.get('/api/payloads', { params: { "project": projSlug }})
-                .then(res => {
-                    const data = res.data.payloads;
-                    let payloads = [];
-                    data.forEach(ele => {
-                        payloads.push({value: ele['_id'], label: ele['name']})
-                    })
-                    setOptions({...options, "payloads":payloads});
-                })
-            
-            await axios.get('/api/endpoints', { params: { "project": projSlug }})
-                    .then(res => {
-                        const data = res.data.endpoints;
-                        let endpoints = [];
-                        data.forEach(ele => {
-                            endpoints.push({value: ele['_id'], label: ele['name']})
-                        })
-                        setOptions({...options, "endpoints":endpoints});
-                    })
-    } 
-
+        
+        
     useEffect(() => {
-        fetchData();
+        let headers = [];
+        let payloads = [];
+        let endpoints = [];
+        axios.get('/api/headers', { params: { "project": projSlug }})
+        .then((res) => {
+            const data = res.data.headers;
+            data.forEach(ele => {
+                headers.push({value: ele['_id'], label: ele['name']})
+            })
+        })
+        
+        axios.get('/api/payloads', { params: { "project": projSlug }})
+        .then((res) => {
+            const data = res.data.payloads;
+            data.forEach(ele => {
+                payloads.push({value: ele['_id'], label: ele['name']})
+            })
+        })
+        
+        axios.get('/api/endpoints', { params: { "project": projSlug }})
+        .then((res) => {
+            const data = res.data.endpoints;
+            data.forEach(ele => {
+                endpoints.push({value: ele['_id'], label: ele['name']})
+            })
+        })
+        
+        setOptions({...options, "endpoints":endpoints, "headers": headers, "payloads": payloads});
     }, [])
     
     
