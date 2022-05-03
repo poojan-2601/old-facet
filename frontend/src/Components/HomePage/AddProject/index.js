@@ -7,7 +7,7 @@ const AddProject = ({ show, handleClose }) => {
 
     const onsubmit = (e) => {
         e.preventDefault();
-        axios.post('/api/create-projects', formData)
+        axios.post('/api/projects/new', formData)
             .then(res => {
                 alert(res.data.success);
                 handleClose();
