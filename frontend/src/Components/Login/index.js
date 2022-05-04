@@ -18,7 +18,8 @@ const Login = () => {
         })
         .then((res) =>{
             // res = res.json()
-            localStorage.setItem('token',res.data.token)
+            localStorage.setItem('token',res.data.token);
+            localStorage.setItem('username',res.data.user);
             console.log(res);
             navigate("/dashboard",{replace:true});
         })
