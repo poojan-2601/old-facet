@@ -1,10 +1,11 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate, useParams} from 'react-router-dom';
 import './style.css'
 
 const ProjectsMenu = ({data}) => {
-    let navigate = useNavigate();
+    let { projSlug } = useParams();
+
     const links = [
         "testsuites",
         "testcases",
@@ -16,11 +17,14 @@ const ProjectsMenu = ({data}) => {
         <>
             <Navbar bg="light" variant="light" className="border">
                 <Container>
-                    <Nav>
+                    <Navbar.Brand style={{fontSize: "28px"}}>
+                        {projSlug}
+                    </Navbar.Brand>
+                    <Nav className="me-auto">
                         {links.map(e => {
                             return <Nav.Link key={e}>
                                     <NavLink
-                                        to={`/project/${data.projSlug}/${e}`}
+                                        to={`/project/${data}/${e}`}
                                         className={({ isActive }) => {
                                             return isActive?("navlink active"):("navlink")
                                         }}
@@ -29,7 +33,6 @@ const ProjectsMenu = ({data}) => {
                                     </NavLink>
                                 </Nav.Link>
                         })}
-                        
                     </Nav>
                 </Container>
             </Navbar>
