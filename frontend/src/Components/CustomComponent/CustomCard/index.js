@@ -13,7 +13,7 @@ const CustomCard = (props) => {
                 <>
                     <Button 
                         size="sm" 
-                        onClick={() => setIsEditable(true)}
+                        // onClick={() => setIsEditable(true)}
                         className="d-flex align-items-center"
                         disabled={isEditable}
                     >
