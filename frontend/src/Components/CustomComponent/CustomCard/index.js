@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const CustomCard = (props) => {
   const { data, setIsEditable, isEditable } = props;
-  let {projSlug} = useParams();
+  let {projSlug,tab} = useParams();
   let navigate = useNavigate();
   const executeSuite = (e) => {
     navigate(`/project/${projSlug}/execute/${data.name}`);
@@ -15,14 +15,15 @@ const CustomCard = (props) => {
       <Card.Header className="d-flex justify-content-between align-items-center">
         <h4 className="py-2 my-auto">{data.name}</h4>
         <>
-          <Button
+          {tab === "testsuites" ? (<Button
             size="sm"
             variant="success"
             style={{ marginLeft: "600px" }}
             onClick={executeSuite}
           >
             Execute
-          </Button>
+          </Button>) : (<></>)}
+          
           <Button
             size="sm"
             // onClick={() => setIsEditable(true)}
