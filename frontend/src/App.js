@@ -7,6 +7,7 @@ import ProjectsContainer from './Containers/ProjectContainer';
 import SignupContainer from './Containers/SignUpContainer';
 import PrivateRoutes from './PrivateRoutes';
 import './App.css'
+import ExecuteContainer from './Containers/ExecuteContainer';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/dashboard" element={<HomeContainer />} />
           <Route path="/project/:projSlug" element={<><ProjectsContainer/></>} />
           <Route path="/project/:projSlug/:tab" element= {<ProjectsContainer/>} />
+          <Route path="/project/:projSlug/execute/:testsuite" element = {<ExecuteContainer/>}/>
         </Route>
         <Route path="/login" element={<LoginContainer />} />
         <Route path="/register" element={<SignupContainer />} />
