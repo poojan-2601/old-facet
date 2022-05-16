@@ -4,7 +4,7 @@ import axios from "../../../axios";
 
 
 const AddEndpoint = (props) => {
-    const { projSlug, tab, handleClose } = props;
+    const { projSlug, handleClose } = props;
     const [formData, setFormData] = useState({"project" : projSlug, "name" : "", "endpoint" : ""})
 
     const onSubmit = (e) => {

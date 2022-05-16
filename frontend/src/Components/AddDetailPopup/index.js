@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Modal, Button } from "react-bootstrap"
+import { Modal } from "react-bootstrap"
 import AddTestsuite from "../AddDetails/AddTestsuite";
 import AddHeader from "../AddDetails/AddHeader";
 import AddTestcase from "../AddDetails/AddTestcase";

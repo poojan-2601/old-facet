@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap"
-import {Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "../../axios";
 
 
@@ -12,7 +12,7 @@ const Signup = () => {
     }
     const onHandleSubmit = async(e) => {
         e.preventDefault();
-        if (formDetails.password == formDetails.confirmpassword)
+        if (formDetails.password === formDetails.confirmpassword)
         {
             axios.post('/api/signup',{
                 "name" : formDetails.name,

@@ -3,7 +3,7 @@ import { Form,Button } from "react-bootstrap";
 import axios from "../../../axios";
 
 const AddPayload = (props) => {
-    const { projSlug, tab, handleClose } = props;
+    const { projSlug, handleClose } = props;
     const [formData, setFormData] = useState(
         {
             "name": "",

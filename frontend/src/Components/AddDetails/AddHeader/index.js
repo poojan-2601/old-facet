@@ -4,7 +4,7 @@ import axios from "../../../axios";
 import KeyValuePairFormFields from "../../KeyValuePairFormFields";
 
 const AddHeader = (props) => {
-    const { projSlug, tab, handleClose } = props;
+    const { projSlug, handleClose } = props;
     const [formData,setFormData] = useState({"project" : projSlug,"name" : "", "header" : {"":""}});
 
     const onSubmit = (e) => {

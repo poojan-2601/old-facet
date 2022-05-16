@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import axios from '../../../axios';
 import AddTestData from '../../AddDetails/AddTestData';
@@ -28,7 +28,7 @@ const DataViewComponent = ({ activeDataId }) => {
             .catch(err => {
                 console.log(err.response.data);
             })
-    }, [activeDataId])
+    }, [activeDataId, projSlug, tab])
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -49,7 +49,7 @@ const DataViewComponent = ({ activeDataId }) => {
                 <CustomCard data={data} setIsEditable={setIsEditable} isEditable={isEditable}>
                     {Object.keys(data).map(e => {
                         if(e==="_id"){
-                            return
+                            return ""
                         }
                         return <Form.Group as={Row} key={e} className="mb-3">
                                     <Form.Label column sm={2}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
-import { NavLink, useNavigate, useParams} from 'react-router-dom';
+import { NavLink, useParams} from 'react-router-dom';
 import './style.css'
 
 const ProjectsMenu = ({data}) => {

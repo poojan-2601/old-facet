@@ -4,7 +4,7 @@ import axios from "../../../axios";
 import Select from 'react-select';
 
 const AddTestcase = (props) => {
-    const { projSlug, tab, handleClose } = props;
+    const { projSlug, handleClose } = props;
     
     const [formData, setFormData] = useState(
         {
