@@ -7,12 +7,13 @@ const ExecuteTestSuite = () => {
   let { testsuite, projSlug } = useParams();
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    {
-      fetch_data();
-    }
+    fetch_data();
   }, []);
+  
   const fetch_data = () => {
+    setLoading(true);
     axios
       .post(`/api/tests`, {
         testsuite: testsuite,
@@ -23,15 +24,12 @@ const ExecuteTestSuite = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
-        alert("something went wrong");
+        console.log(err.response);
       });
   };
   return (
-    <>
-      {loading ? (
-        <Spinner animation="border" />
-      ) : (
+    <div className="container">
+      {loading?(<Spinner />):(
         <>
           <h3 className="m-3">TestSuite Results for {testsuite}</h3>
           {result.map((e) => {
@@ -84,7 +82,7 @@ const ExecuteTestSuite = () => {
           })}
         </>
       )}
-    </>
+    </div>
   );
 };
 

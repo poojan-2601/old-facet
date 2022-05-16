@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import { Button, Form, FormGroup, FormLabel } from "react-bootstrap"
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import axios from "../../axios";
+import { setAlert } from "../../store/actions";
 
 
 const Login = () => {
+    let dispatch = useDispatch();
+
     const [formDetails,setFormDetails] = useState({"email":"","password":""})
     let navigate = useNavigate();
     const onchange = (e) => {
@@ -21,6 +25,7 @@ const Login = () => {
             localStorage.setItem('token',res.data.token);
             localStorage.setItem('username',res.data.user);
             console.log(res);
+            dispatch(setAlert({"type":"success", "message":"Login Successfully!"}))
             navigate("/dashboard",{replace:true});
         })
         .catch((err) =>{

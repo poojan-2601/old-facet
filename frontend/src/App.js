@@ -8,10 +8,12 @@ import SignupContainer from './Containers/SignUpContainer';
 import PrivateRoutes from './PrivateRoutes';
 import './App.css'
 import ExecuteContainer from './Containers/ExecuteContainer';
+import AlertComponent from './Components/AlertComponent';
 
 const App = () => {
   return (
     <div className='App bg-light'>
+      <AlertComponent />
       <Header />
       <Routes>
         <Route path='/' element={<PrivateRoutes />}>
