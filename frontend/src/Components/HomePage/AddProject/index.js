@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from '../../../axios';
+import { useDispatch } from 'react-redux';
+import { setAlert } from '../../../store/actions';
 
 const AddProject = ({ show, handleClose }) => {
+    let dispatch = useDispatch();
     const [formData, setFormData] = useState({"name":"", "description":""});
 
     const onsubmit = (e) => {
         e.preventDefault();
         axios.post('/api/projects/new', formData)
             .then(res => {
-                alert(res.data.success);
                 handleClose();
+                dispatch(setAlert({
+                    "type": "success", 
+                    "message": res.data.success
+                }));
             })
             .catch(err => {
-                alert(err.response.data.errors);
+                handleClose();
+                dispatch(setAlert({
+                    "type": "danger", 
+                    "message": err.response.data.errors
+                }));
             })
     }
 

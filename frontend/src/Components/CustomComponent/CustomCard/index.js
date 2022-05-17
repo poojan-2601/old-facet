@@ -15,14 +15,16 @@ const CustomCard = (props) => {
       <Card.Header className="d-flex justify-content-between align-items-center">
         <h4 className="py-2 my-auto">{data.name}</h4>
         <>
-          {tab === "testsuites" ? (<Button
-            size="sm"
-            variant="success"
-            style={{ marginLeft: "600px" }}
-            onClick={executeSuite}
-          >
-            Execute
-          </Button>) : (<></>)}
+          {tab === "testsuites" ? (
+            <Button
+              size="sm"
+              variant="success"
+              style={{ marginLeft: "600px" }}
+              onClick={executeSuite}
+            >
+              Execute
+            </Button>
+          ):(<></>)}
           
           <Button
             size="sm"

@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, FormLabel } from "react-bootstrap"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import axios from "../../axios";
-import { setAlert } from "../../store/actions";
+import { setAlert, setLogin } from "../../store/actions";
 
 
 const Login = () => {
@@ -25,8 +25,10 @@ const Login = () => {
             localStorage.setItem('token',res.data.token);
             localStorage.setItem('username',res.data.user);
             console.log(res);
-            dispatch(setAlert({"type":"success", "message":"Login Successfully!"}))
-            navigate("/dashboard",{replace:true});
+            dispatch(setLogin());
+            dispatch(setAlert({"type":"success", "message":"Login Successfully!"}));
+            axios.defaults.headers['Authorization'] = 'Bearer '+res.data.token;
+            navigate("/dashboard", {replace:true});
         })
         .catch((err) =>{
             console.log(err);

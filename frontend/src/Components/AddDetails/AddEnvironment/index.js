@@ -1,22 +1,32 @@
 import React , { useState }  from "react";
-import { Form,Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import axios from "../../../axios";
+import { useDispatch } from 'react-redux';
+import { setAlert } from '../../../store/actions';
 
 
-const AddEndpoint = (props) => {
+const AddEnvironment = (props) => {
+    let dispatch = useDispatch();
+
     const { projSlug, handleClose } = props;
-    const [formData, setFormData] = useState({"project" : projSlug, "name" : "", "endpoint" : ""})
+    const [formData, setFormData] = useState({"project" : projSlug, "name" : "", "url" : ""})
 
     const onSubmit = (e) => {
         e.preventDefault();
         handleClose();
-        axios.post('/api/endpoints/new', formData)
+        axios.post('/api/environments/new', formData)
         .then(res => {
-            alert(res.data.success);
             handleClose();
+            dispatch(setAlert({
+                "type": "success",
+                "message": res.data.success
+            }));
         })
         .catch(err => {
-            alert(err.response.data.errors);
+            dispatch(setAlert({
+                "type":"danger",
+                "message": err.response.data.errors
+            }));
         })
     }
     const onchange = (e) => {
@@ -30,8 +40,8 @@ const AddEndpoint = (props) => {
                     <Form.Control type="text" name="name" id="name" value={formData.name} onChange={onchange} />
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                    <Form.Label>Endpoint</Form.Label>
-                    <Form.Control type="text" name="endpoint" id="endpoint" value={formData.endpoint} onChange={onchange} />
+                    <Form.Label>URL</Form.Label>
+                    <Form.Control type="url" name="url" id="url" value={formData.url} onChange={onchange} />
                 </Form.Group>
                 <div className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={handleClose} className="me-2">Close</Button>
@@ -42,4 +52,4 @@ const AddEndpoint = (props) => {
     )
 }
 
-export default AddEndpoint;
+export default AddEnvironment;

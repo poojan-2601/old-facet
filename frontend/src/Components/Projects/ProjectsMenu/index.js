@@ -10,6 +10,7 @@ const ProjectsMenu = ({data}) => {
         "testsuites",
         "testcases",
         "headers",
+        "environments",
         "endpoints",
         "payloads"
     ]

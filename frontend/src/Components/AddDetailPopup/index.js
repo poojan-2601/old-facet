@@ -6,6 +6,7 @@ import AddHeader from "../AddDetails/AddHeader";
 import AddTestcase from "../AddDetails/AddTestcase";
 import AddPayload from "../AddDetails/AddPayload";
 import AddEndpoint from "../AddDetails/AddEndpoint";
+import AddEnvironment from "../AddDetails/AddEnvironment";
 
 const AdddetailPopup = (props) => {
     const { show, handleClose } = props;
@@ -23,6 +24,10 @@ const AdddetailPopup = (props) => {
                 return <AddPayload handleClose={handleClose} projSlug={projSlug} tab={tab} />
             case 'endpoints':
                 return <AddEndpoint handleClose={handleClose} projSlug={projSlug} tab={tab} />
+            case 'environments':
+                return <AddEnvironment handleClose={handleClose} projSlug={projSlug} tab={tab} />
+            default:
+                handleClose();
         }
     }
 
