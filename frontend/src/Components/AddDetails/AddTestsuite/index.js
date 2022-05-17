@@ -11,10 +11,12 @@ const AddTestsuite = (props) => {
             "project": projSlug,
             "name": "",
             "description": "",
-            "testcases": []
+            "testcases": [],
+            "environment": ""
         }
     )
     const [testcaseOptions, setTestcaseOptions] = useState([]);
+    const [environmentOptions, setEnvironmentOptions] = useState([]);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -39,6 +41,20 @@ const AddTestsuite = (props) => {
                 setTestcaseOptions(testcases);
             })
     }, [])
+
+    useEffect(() => {
+        axios
+            .get('/api/environments', { params: { "project": projSlug } })
+            .then(res => {
+                const data = res.data.environments;
+                let environments = [];
+                data.forEach(ele => {
+                    environments.push({value: ele['name'], label: ele['name']})
+                })
+                setEnvironmentOptions(environments);
+            })
+    }, [])
+    
     
     const onchange = (e) => {
         setFormData({...formData, [e.target.name]:e.target.value});
@@ -53,6 +69,15 @@ const AddTestsuite = (props) => {
                 <Form.Group className='mb-3'>
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" rows={3} name="description" id="description" value={formData.description} onChange={onchange} />
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                    <Form.Label>Environment</Form.Label>
+                    <Select 
+                        isMulti={false}
+                        options={environmentOptions}
+                        onChange={(e) => setFormData({...formData, "environment": e.value})}
+                        name="environment"  
+                    />
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Testcases</Form.Label>
